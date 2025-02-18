@@ -18,6 +18,7 @@ def start_client(host='localhost', port=8083):
     while True:
         message = input()
         if message.lower() == 'exit':
+            client_socket.send(message.encode('utf-8'))
             client_socket.close()
             break
         client_socket.send(message.encode('utf-8'))

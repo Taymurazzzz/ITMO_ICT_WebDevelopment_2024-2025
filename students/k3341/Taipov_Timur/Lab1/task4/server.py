@@ -8,6 +8,10 @@ def handle_client(client_socket):
     clients.append(client_socket)
     while True:
         message = client_socket.recv(1024)
+        if message.decode().lower() == 'exit' :
+            clients.remove(client_socket)
+            continue
+        message = f"User{str(client_socket).split(',')[0][18:]}: {message.decode()}".encode()
         broadcast(message, client_socket)
 
 
